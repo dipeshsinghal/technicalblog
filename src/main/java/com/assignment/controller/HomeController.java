@@ -2,29 +2,24 @@ package com.assignment.controller;
 
 
 import com.assignment.model.Post;
+import com.assignment.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
 public class HomeController {
 
+    @Autowired
+    private PostService postService;
+
     @RequestMapping("/")
     public String getAllPosts(Model model){
 
-        Post post1 = new Post("Post A title", "Post A body", new Date());
-        Post post2 = new Post("Post B title", "Post B body", new Date());
-        Post post3 = new Post("Post C title", "Post C body", new Date());
-
-        List<Post> posts = new ArrayList<>();
-
-        posts.add(post1);
-        posts.add(post2);
-        posts.add(post3);
+        List<Post> posts = postService.getallPpost();
 
         model.addAttribute("posts", posts);
 

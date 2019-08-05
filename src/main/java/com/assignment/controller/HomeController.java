@@ -25,4 +25,9 @@ public class HomeController {
 
         return "index";
     }
+
+    /*@RequestMapping(value = "/users/registration" )
+    public String getAllPosts(Model model){
+        return "";
+    }*/
 }

@@ -1,9 +1,6 @@
 package com.assignment.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,6 +8,9 @@ import java.util.Date;
 public class Post {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "POST_ENTITY_SEQ")
+    @SequenceGenerator(name = "POST_ENTITY_SEQ", sequenceName = "POST_ENTITY_SEQ", allocationSize = 1)
     @Column(name="id")
     private Integer id;
 
@@ -23,13 +23,9 @@ public class Post {
     @Column(name="date")
     private Date date;
 
-    public Post(){}
-
-    public Post(String title, String body, Date date) {
-        this.title = title;
-        this.body = body;
-        this.date = date;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Integer getId() {
         return id;
@@ -61,5 +57,13 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

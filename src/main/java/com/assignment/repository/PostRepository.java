@@ -22,5 +22,4 @@ public class PostRepository {
         return resultList;
     }
 
-
 }

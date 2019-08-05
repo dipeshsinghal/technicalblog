@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Technical Blog</title>
+
+<head th:replace="layout :: site-head" >
+    <title>Spring MVC Application</title>
 </head>
+<header th:replace="layout :: logged-out" />
+
 <body>
-    <title>Welcome to Technical Blog</title>
+    <h1>All Technical Posts</h1>
     <main id="posts">
         <post th:each="p : ${posts}">
             <h2 th:text="${p.title}" />

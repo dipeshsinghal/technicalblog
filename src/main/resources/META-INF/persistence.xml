@@ -9,10 +9,10 @@
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/technicalblog" /> <!-- BD Mane -->
-            <property name="javax.persistence.jdbc.user" value="dsinghal" /> <!-- DB User -->
+            <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
             <property name="javax.persistence.jdbc.password" value="12345" /> <!-- DB Password -->
 
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/> <!-- DB Dialect -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/> <!-- DB Dialect -->
             <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
 
             <property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->

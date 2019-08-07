@@ -9,7 +9,7 @@
     <header th:replace="layout :: logged-out"></header>
 
     <h2>Please Login:</h2></br>
-    <form method="post" th:object="${User}">
+    <form th:action="@{/users/login}"  method="post" th:object="${User}">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" /></br>
         <label for="password">Password:</label>

@@ -9,13 +9,23 @@
     <header th:replace="layout :: logged-out"></header>
 
     <h2>Please Register:</h2></br>
-    <form method="post" th:object="${User}">
+    <form th:action="@{/users/registration}" th:method="POST" th:object="${User}">
+
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username"/></br>
+        <input type="text" id="username" name="username" th:field="${User.username}"/></br>
+
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"/></br>
+        <input type="password" id="password" name="password" th:field="${User.password}"/></br>
+
         <label for="fullname">Full Name:</label>
-        <input type="text" id="fullname" name="fullName"/></br>
+        <input type="text" id="fullname" name="fullName" th:field="${User.profile.fullName}"/></br>
+
+        <label for="emailaddress">Email Address:</label>
+        <input type="text" id="emailaddress" name="emailAddress" th:field="${User.profile.emailAddress}"/></br>
+
+        <label for="mobilenumber">Mobile Number:</label>
+        <input type="text" id="mobilenumber" name="mobileNumber" th:field="${User.profile.mobileNumber}"/></br>
+
         <input type="submit" value="Register"/>
     </form>
 </html>

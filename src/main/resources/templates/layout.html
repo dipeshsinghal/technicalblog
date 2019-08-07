@@ -12,6 +12,15 @@
             </header>
         </header>
 
+        <header th:fragment="logged-in" th:remove="tag">
+            <header>
+                <a href="create.html" th:href="@{/posts/create}">Create Post</a>
+                <form method="post" th:action="@{/users/logout}" >
+                    <input type="submit" value="logout" />
+                </form>
+            </header>
+        </header>
+
     </body>
 
 </html>

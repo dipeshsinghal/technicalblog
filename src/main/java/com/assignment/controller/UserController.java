@@ -25,8 +25,12 @@ public class UserController {
     @RequestMapping(value = "/users/login", method= RequestMethod.POST)
     public String loginUser(User user, HttpSession session) {
         User loggedInUser = userService.loginUser(user);
-        session.setAttribute("logedinuser", loggedInUser);
-        return "redirect:/posts/my";
+        if(loggedInUser != null ) {
+            session.setAttribute("logedinuser", loggedInUser);
+            return "redirect:/posts/my";
+        } else {
+            return "users/login";
+        }
     }
 
     @RequestMapping("/users/registration")

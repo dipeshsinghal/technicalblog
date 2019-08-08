@@ -29,9 +29,25 @@ public class PostService {
         return posts;
     }
 
+    public Post getOnePost(Integer postId){
+        return postRepository.getOnePost(postId);
+    }
+
+
+
     public void createPost (Post newPost, User logedInUser){
         newPost.setDate(new Date());
         newPost.setUser(logedInUser);
         postRepository.createPost(newPost);
     }
+
+    public void editPost (Post post){
+        post.setDate(new Date());
+        postRepository.editPost(post);
+    }
+
+    public void deletePost (Integer postId){
+        postRepository.deletePost(postId);
+    }
+
 }

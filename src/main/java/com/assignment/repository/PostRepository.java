@@ -34,6 +34,11 @@ public class PostRepository {
         return resultList;
     }
 
+    public Post getOnePost(Integer postId){
+        EntityManager em = emf.createEntityManager();
+        return em.find(Post.class, postId);
+    }
+
     public void createPost (Post newPost){
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
@@ -46,6 +51,36 @@ public class PostRepository {
         }
     }
 
+    public void deletePost (Integer postId){
+        EntityManager em = emf.createEntityManager();
 
+        TypedQuery<Post> query = em.createQuery("SELECT p from Post p where p.id = :postid", Post.class);
+        query.setParameter("postid", postId);
+
+        Post post = query.getSingleResult();
+
+        if(post != null) {
+            EntityTransaction transaction = em.getTransaction();
+            try {
+                transaction.begin();
+                em.remove(post);
+                transaction.commit();
+            } catch (Exception e){
+                transaction.rollback();
+            }
+        }
+    }
+
+    public void editPost (Post post){
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.merge(post);
+            transaction.commit();
+        } catch (Exception e){
+            transaction.rollback();
+        }
+    }
 
 }

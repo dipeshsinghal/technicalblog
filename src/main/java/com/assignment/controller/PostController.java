@@ -1,5 +1,6 @@
 package com.assignment.controller;
 
+import com.assignment.model.Category;
 import com.assignment.model.Post;
 import com.assignment.model.User;
 import com.assignment.service.PostService;
@@ -42,6 +43,20 @@ public class PostController {
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String newPost(Post newPost, HttpSession httpSession) {
         User logedInUser = (User)httpSession.getAttribute("logedinuser");
+
+        if (newPost.getSpringBlog() != null) {
+            Category springBlogCategory = new Category();
+            springBlogCategory.setCategory(newPost.getSpringBlog());
+            newPost.getCategories().add(springBlogCategory);
+        }
+
+        if (newPost.getJavaBlog() != null) {
+            Category javaBlogCategory = new Category();
+            javaBlogCategory.setCategory(newPost.getJavaBlog());
+            newPost.getCategories().add(javaBlogCategory);
+        }
+
+
         postService.createPost(newPost, logedInUser);
         return "redirect:/posts/my";
     }
